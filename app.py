@@ -88,10 +88,13 @@ def new_user():
         username = req_data['username']
         password = req_data['password']
         print(username, password)
+        # User.username = user
+        # User.password = passw
     return jsonify(isError= False,
                     message= "Success",
                     statusCode= 200,
-                    data= "We received the request"), 200
+                    data= {"Nice": "We received the request"}), 200
+    # return "Thank you"
 
 # The Members page is only accessible to authenticated users via the @login_required decorator
 @app.route('/members')
