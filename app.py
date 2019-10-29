@@ -34,7 +34,10 @@ def create_app():
     
     # Setup Flask and load app.config
     app = Flask(__name__)
+    app.config['MONGO_DBNAME'] = 'stocks'
+    app.config['MONGO_URI'] = "mongodb://test2:test1234@ds137611.mlab.com:37611/stocks"
     app.config.from_object(__name__+'.ConfigClass')
+    mongo = PyMongo(app)
 
     # Setup Flask-MongoEngine
     db = MongoEngine(app)
