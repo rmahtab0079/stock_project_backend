@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template_string
 from flask_pymongo import PyMongo
 from flask_mongoengine import MongoEngine
 from flask_user import login_required, UserManager, UserMixin
+from flask_cors import CORS
 
 
 # app = Flask(__name__)
@@ -34,6 +35,7 @@ class ConfigClass(object):
     
     # Setup Flask and load app.config
 app = Flask(__name__)
+CORS(app)
 app.config['MONGO_DBNAME'] = 'stocks'
 app.config['MONGO_URI'] = "mongodb://test2:test1234@ds137611.mlab.com:37611/stocks"
 app.config.from_object(__name__+'.ConfigClass')
