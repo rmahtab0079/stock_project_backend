@@ -3,6 +3,12 @@ from flask_pymongo import PyMongo
 from flask_mongoengine import MongoEngine
 from flask_user import login_required, UserManager, UserMixin
 
+
+# app = Flask(__name__)
+# app.config['MONGO_DBNAME'] = 'stocks'
+# app.config['MONGO_URI'] = "mongodb://test2:test1234@ds137611.mlab.com:37611/stocks"
+# mongo = PyMongo(app)
+
 # Class-based application configuration
 class ConfigClass(object):
     """ Flask application config """
@@ -87,11 +93,6 @@ def create_app():
 
     return app
 
-# app = Flask(__name__)
-# app.config['MONGO_DBNAME'] = 'stocks'
-# app.config['MONGO_URI'] = "mongodb://test2:test1234@ds137611.mlab.com:37611/stocks"
-# mongo = PyMongo(app)
-
     @app.route('/posts', methods=['GET'])
     def PostList():
     	posts = mongo.db.posts
@@ -147,8 +148,4 @@ def create_app():
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
     app = create_app()
-    # app.run(host='0.0.0.0', port=5000)
     app.run(threaded=True, port=5000)
-
-
-
