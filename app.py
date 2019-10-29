@@ -62,9 +62,11 @@ class User(db.Document, UserMixin):
 user_manager = UserManager(app, db, User)
 
 # The Home page is accessible to anyone
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home_page():
     # String-based templates
+    
+
     return render_template_string("""
         {% extends "flask_user_layout.html" %}
         {% block content %}
@@ -76,6 +78,18 @@ def home_page():
             <p><a href={{ url_for('user.logout') }}>Sign out</a></p>
         {% endblock %}
         """)
+
+@app.route('/register', methods=['POST'])
+def new_user():
+    if request.method == 'POST':
+        req_data = request.get_json()
+        username = req_data['username']
+        password = req_data['password']
+        print(username, password)
+    return jsonify(isError= False,
+                    message= "Success",
+                    statusCode= 200,
+                    data= "We received the request"), 200
 
 # The Members page is only accessible to authenticated users via the @login_required decorator
 @app.route('/members')
