@@ -79,7 +79,7 @@ def home_page():
         {% endblock %}
         """)
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def new_user():
     if request.method == 'POST':
         req_data = request.get_json()
